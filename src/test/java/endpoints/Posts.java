@@ -23,7 +23,6 @@ public class Posts extends Base {
     private Posts() {
     }
 
-
 //    String messageBody = "{\n" +
 //            "    \"title\":\"" + title + "\",\n" +
 //            "    \"body\":\"" + message + "\"\n" +
@@ -36,7 +35,6 @@ public class Posts extends Base {
         return instance;
     }
 
-
     private Response createPost(String AUTH, String body) {
         Response result = RestAssured
                 .given()
@@ -45,7 +43,7 @@ public class Posts extends Base {
                 .accept(ContentType.JSON)
                 .body(body)
                 .when()
-                .post("/users/" + RESTUsers.getInstance().currentUserId + "/posts");
+                .post("/users/" + Users.getInstance().currentUserId + "/posts");
         currentPostId = result.jsonPath().getString("id");
         return result;
     }
@@ -136,7 +134,7 @@ public class Posts extends Base {
         assertAll(
                 () -> assertEquals(post.getTitle(), deserializedPost.getTitle(), "Titles are not the same"),
                 () -> assertEquals(post.getBody(), deserializedPost.getBody(), "Bodies are not the same"),
-                () -> assertEquals(RESTUsers.getInstance().currentUserId, deserializedPost.getUser_id(), "user_id are not the same")
+                () -> assertEquals(Users.getInstance().currentUserId, deserializedPost.getUser_id(), "user_id are not the same")
         );
     }
 

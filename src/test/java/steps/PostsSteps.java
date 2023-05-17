@@ -1,11 +1,13 @@
 package steps;
 
+import endpoints.Posts;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 
 public class PostsSteps {
-    RESTPosts posts = RESTPosts.getInstance();
+
+    Posts posts = Posts.getInstance();
 
     @Given("Create a new post")
     public void create_new_post() {
